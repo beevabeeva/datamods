@@ -30,7 +30,9 @@ edit_data_server(
   callback_update = NULL,
   callback_delete = NULL,
   only_callback = FALSE,
-  use_notify = TRUE
+  use_notify = TRUE,
+  add_modal_title = c("Add a row"),
+  add_button_label = c("Add a row")
 )
 }
 \arguments{
@@ -80,6 +82,10 @@ If the return value of a callback function is not truthy (see \code{\link[shiny:
 \item{only_callback}{Only use callbacks, don't alter data within the module.}
 
 \item{use_notify}{Display information or not to user through \code{\link[shinybusy:notify]{shinybusy::notify()}}.}
+
+\item{add_modal_title}{Override the title on the 'add row' modal. Default is "Add a row".}
+
+\item{add_button_label}{Override the text on the 'add row' button with custom text. Default is "Add a row"}
 }
 \value{
 the edited \code{data.frame} in reactable format with the user modifications
@@ -90,7 +96,8 @@ This module returns the edited table with the user modifications.
 }
 \examples{
 library(shiny)
-library(datamods)
+# library(datamods)
+devtools::load_all("~/Development/datamods/")
 library(bslib)
 library(reactable)
 
@@ -131,6 +138,8 @@ server <- function(input, output, session) {
     n_column = 2,
     modal_size = "l",
     modal_easy_close = TRUE,
+    add_modal_title = c("Add a teper"),
+    add_button_label = c("Add a trailer"),
     reactable_options = list(
       defaultColDef = colDef(filterable = TRUE),
       selection = "single",

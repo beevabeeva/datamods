@@ -25,7 +25,7 @@
 #'
 edit_modal <- function(default = list(),
                        id_validate = "add_row",
-                       title = i18n("Add a trailer"),
+                       title = i18n("Add a row"),
                        data,
                        var_edit = NULL,
                        var_mandatory = NULL,

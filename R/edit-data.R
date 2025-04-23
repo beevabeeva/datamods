@@ -16,7 +16,7 @@
 #'
 #' @name edit-data
 #'
-#' @example examples/edit_data.R
+#' @example examples/edit_data_example.R
 edit_data_ui <- function(id) {
   ns <- NS(id)
 
@@ -70,6 +70,9 @@ edit_data_ui <- function(id) {
 #' @param only_callback Only use callbacks, don't alter data within the module.
 #' @param use_notify Display information or not to user through [shinybusy::notify()].
 #' @param add_button_label Override the text on the 'add row' button with custom text. Default is "Add a row"
+#' @param add_modal_title Override the title on the 'add row' modal. Default is "Add a row".
+#'
+#'
 #'
 #'
 #' @return the edited `data.frame` in reactable format with the user modifications
@@ -109,6 +112,7 @@ edit_data_server <- function(id,
                              callback_delete = NULL,
                              only_callback = FALSE,
                              use_notify = TRUE,
+                             add_modal_title =  c("Add a row"),
                              add_button_label = c("Add a row")) {
   return_class <- match.arg(return_class)
   modal_size <- match.arg(modal_size)
@@ -225,6 +229,7 @@ edit_data_server <- function(id,
             data_rv$internal_colnames
           ),
           id_validate = "add_row",
+          title = i18n(add_modal_title),
           data = data_rv$data,
           var_edit = data_rv$edit,
           var_mandatory = data_rv$mandatory,
