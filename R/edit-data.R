@@ -69,7 +69,7 @@ edit_data_ui <- function(id) {
 #'  If the return value of a callback function is not truthy (see [shiny::isTruthy()]) then the action is cancelled.
 #' @param only_callback Only use callbacks, don't alter data within the module.
 #' @param use_notify Display information or not to user through [shinybusy::notify()].
-#'
+#' @param add_button_label Override the text on the 'add row' button with custom text. Default is "Add a row"
 #'
 #'
 #' @return the edited `data.frame` in reactable format with the user modifications
@@ -108,7 +108,8 @@ edit_data_server <- function(id,
                              callback_update = NULL,
                              callback_delete = NULL,
                              only_callback = FALSE,
-                             use_notify = TRUE) {
+                             use_notify = TRUE,
+                             add_button_label = c("Add a row")) {
   return_class <- match.arg(return_class)
   modal_size <- match.arg(modal_size)
   callback_default <- function(...) return(TRUE)
@@ -209,7 +210,7 @@ edit_data_server <- function(id,
         if (isTRUE(add)) {
           actionButton(
             inputId = ns("add"),
-            label = tagList(ph("plus"), i18n("Add a row")),
+            label = tagList(ph("plus"), i18n(add_button_label)),
             class = "btn-outline-primary float-end"
           )
         }

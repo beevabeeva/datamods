@@ -1,4 +1,4 @@
-Package: datamods
+Package: avidatamods
 Title: Modules to Import and Manipulate Data in 'Shiny'
 Version: 1.5.3.9100
 Authors@R: 
